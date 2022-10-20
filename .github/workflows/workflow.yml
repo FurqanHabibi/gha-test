@@ -7,5 +7,5 @@ jobs:
     steps:
       - id: fail
         run: exit 1
-      - if: steps.fail.outcome == 'failure':
+      - if: steps.fail.outcome == 'failure'
         run: echo "I'm still running"
