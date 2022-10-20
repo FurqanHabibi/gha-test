@@ -1,0 +1,11 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+on: [push]
+jobs:
+  ga-test:
+    runs-on: ubuntu-latest
+    steps:
+      - id: fail
+        run: exit 1
+      - if: steps.fail.outcome == 'failure':
+        run: echo "I'm still running"
