@@ -6,6 +6,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - id: fail
-        run: exit 1
+        run: exit 0
       - if: always() && steps.fail.outcome == 'failure'
         run: echo "I'm still running"
