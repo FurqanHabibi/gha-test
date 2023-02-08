@@ -1,11 +1,13 @@
 name: GitHub Actions Demo
-run-name: ${{ github.actor }} is testing out GitHub Actions 🚀
+
 on: [push]
+
+env:
+  tHis_iS_a_VariAblE: haha
+
 jobs:
   ga-test:
     runs-on: ubuntu-latest
     steps:
-      - id: fail
-        run: exit 0
-      - if: always() && steps.fail.outcome == 'failure'
-        run: echo "I'm still running"
+      - if: env.THIS_IS_A_VARIABLE == 'haha'
+        run: echo "not case sensitive"
