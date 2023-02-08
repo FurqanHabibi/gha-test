@@ -6,10 +6,8 @@ env:
   tHis_iS_a_VariAblE: 'haha'
 
 jobs:
-  ga-test:
+  gha-test:
     runs-on: ubuntu-latest
     steps:
-      - if: env.THIS_IS_A_VARIABLE == 'haha'
-        run: echo "not case sensitive"
-      - if: env.tHis_iS_a_VariAblE == 'haha'
-        run: echo "case sensitive"
+      - run: echo "${{ env.tHis_iS_a_VariAblE }}"
+      - run: echo "${{ env.THIS_IS_A_VARIABLE }}"
