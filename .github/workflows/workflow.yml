@@ -3,7 +3,7 @@ name: GitHub Actions Demo
 on: [push]
 
 env:
-  tHis_iS_a_VariAblE: haha
+  tHis_iS_a_VariAblE: 'haha'
 
 jobs:
   ga-test:
@@ -11,3 +11,5 @@ jobs:
     steps:
       - if: env.THIS_IS_A_VARIABLE == 'haha'
         run: echo "not case sensitive"
+      - if: env.tHis_iS_a_VariAblE == 'haha'
+        run: echo "case sensitive"
