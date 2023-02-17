@@ -2,8 +2,9 @@ name: "Test"
 description: "Execute test"
 inputs:
   directory:
-    test-input: "Test input"
-    default: "haha"
+    test-input:
+      description : 'tes aja'
+      default: 'haha'
 
 runs:
   using: "composite"
