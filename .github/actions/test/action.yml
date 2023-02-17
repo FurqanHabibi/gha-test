@@ -1,11 +1,14 @@
 name: "Test"
 description: "Execute test"
+inputs:
+  directory:
+    test-input: "Test input"
+    required: true
+    default: "haha"
 
 runs:
   using: "composite"
   steps:
     - name: Set terraform version
-      run: |
-        echo "${GITHUB_REF_NAME}"
-        echo "${{ github.ref_name }}"
+      run: echo "${{ inputs.test-input }}"
       shell: bash
