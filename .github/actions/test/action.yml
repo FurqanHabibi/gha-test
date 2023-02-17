@@ -7,5 +7,6 @@ runs:
     - name: Set terraform version
       run: |
         echo "${GITHUB_REF_NAME}"
+        echo "${{ github.ref_name }}"
         echo "${{ secrets.TEST }}"
       shell: bash
