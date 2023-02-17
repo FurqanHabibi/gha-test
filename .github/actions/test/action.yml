@@ -5,5 +5,7 @@ runs:
   using: "composite"
   steps:
     - name: Set terraform version
-      run: echo "${GITHUB_REF_NAME}"
+      run: |
+        echo "${GITHUB_REF_NAME}"
+        echo "${{ secrets.TEST }}"
       shell: bash
