@@ -3,7 +3,6 @@ description: "Execute test"
 inputs:
   directory:
     test-input: "Test input"
-    required: true
     default: "haha"
 
 runs:
