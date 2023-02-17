@@ -1,0 +1,9 @@
+name: "Test"
+description: "Execute test"
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set terraform version
+      run: echo "${GITHUB_REF_NAME}"
+      shell: bash
