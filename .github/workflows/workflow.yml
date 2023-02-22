@@ -9,7 +9,7 @@ jobs:
       matrix:
         test: [{a: "a", b: "b"}, {a: "a"}]
     env:
-      TEST: ${{ matrix.test.b != NaN && matrix.test.b || "no b here" }}
+      TEST: ${{ matrix.test.b != NaN && matrix.test.b || 'no b here' }}
     steps:
       - run: echo "${{ matrix.test.b }}"
       - run: echo "${TEST}"
