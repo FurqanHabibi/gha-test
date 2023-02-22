@@ -5,6 +5,10 @@ on: push
 jobs:
   gha-test:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test: [{a: "a", b: "b"}, {a: "a"}]
+    env:
+      TEST: ${{ contains(matrix.test, "b") && matrix.test.b || matrix.test.a }}
     steps:
-      - uses: actions/checkout@v3
-      - uses: ./.github/actions/test
+      - run: echo "${TEST}"
