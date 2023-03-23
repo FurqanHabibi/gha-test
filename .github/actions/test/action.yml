@@ -10,7 +10,7 @@ runs:
   steps:
     - run: echo "ENDPOINT_STG=stg.com" >> $GITHUB_ENV
       shell: bash
-    - run: run: echo "ENDPOINT_PRD=prd.com" >> $GITHUB_ENV
+    - run: echo "ENDPOINT_PRD=prd.com" >> $GITHUB_ENV
       shell: bash
     - run: echo ${ENDPOINT_STG}
       shell: bash
