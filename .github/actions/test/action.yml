@@ -8,6 +8,11 @@ inputs:
 runs:
   using: "composite"
   steps:
-    - name: Set terraform version
-      run: echo "${{ inputs.test-input }}"
+    - run: echo "ENDPOINT_STG=stg.com" >> $GITHUB_ENV
+      shell: bash
+    - run: run: echo "ENDPOINT_PRD=prd.com" >> $GITHUB_ENV
+      shell: bash
+    - run: echo ${ENDPOINT_STG}
+      shell: bash
+    - run: echo ${ENDPOINT_PRD}
       shell: bash
