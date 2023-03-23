@@ -5,11 +5,6 @@ on: push
 jobs:
   gha-test:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        test: [{a: "a", b: "b"}, {a: "a"}]
-    env:
-      TEST: ${{ matrix.test.b != NaN && matrix.test.b || 'no b here' }}
     steps:
-      - run: echo "${{ matrix.test.b }}"
-      - run: echo "${TEST}"
+      - uses: actions/checkout@v3
+      - uses: ./.github/actions/test
