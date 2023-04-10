@@ -6,6 +6,4 @@ jobs:
   gha-test:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: echo * | jq -cR 'split(" ")'
-        shell: bash
+      - uses: FurqanHabibi/gha-test@v1
