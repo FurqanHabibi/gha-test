@@ -3,7 +3,11 @@ description: ""
 runs:
   using: "composite"
   steps:
-    - run: pip install boto3
+    - run: |
+        python -m venv venv
+        source venv/bin/activate
+        pip install boto3
       shell: bash
+      
     - run: echo ${{ github.action_path }}
       shell: bash
