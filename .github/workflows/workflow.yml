@@ -8,6 +8,6 @@ jobs:
     steps:
       - run: pip freeze
         shell: bash
-      - uses: FurqanHabibi/gha-test@v1
+      - uses: FurqanHabibi/gha-test@main
       - run: pip freeze
         shell: bash
