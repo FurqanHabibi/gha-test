@@ -21,7 +21,7 @@ jobs:
             github.rest.git.updateRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              ref: 'refs/tags/${{ steps.major-tag.outputs.tag }},
+              ref: 'refs/tags/${{ steps.major-tag.outputs.tag }}',
               sha: context.sha,
               force: true
             })
