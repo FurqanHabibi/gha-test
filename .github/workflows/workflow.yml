@@ -6,8 +6,4 @@ jobs:
   gha-test:
     runs-on: ubuntu-latest
     steps:
-      - run: pip freeze
-        shell: bash
       - uses: FurqanHabibi/gha-test@main
-      - run: pip freeze
-        shell: bash
