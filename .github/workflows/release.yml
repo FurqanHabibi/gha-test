@@ -18,10 +18,9 @@ jobs:
         uses: actions/github-script@v6
         with:
           script: |
-            github.rest.git.updateRef({
+            github.rest.git.createRef({
               owner: context.repo.owner,
               repo: context.repo.repo,
               ref: `refs/tags/${{ steps.major-tag.outputs.tag }}`,
-              sha: context.sha,
-              force: true
+              sha: context.sha
             })
