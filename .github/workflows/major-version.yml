@@ -1,5 +1,4 @@
-name: Update major version after a new release
-
+name: Update major version
 on:
   release:
     types: [published]
