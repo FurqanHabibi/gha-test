@@ -11,3 +11,6 @@ runs:
       
     - run: echo ${{ github.action_path }}
       shell: bash
+     
+    - run: echo ${{ github.action_ref }}
+      shell: bash
