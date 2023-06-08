@@ -2,8 +2,14 @@ name: GitHub Actions Demo
 
 on: push
 
+env:
+  SKIPPED_BRANCHES: '["prd", "stg", "sandbox", "**in"]'
+
 jobs:
   gha-test:
-    runs-on: [self-hosted, linux, x64]
+    runs-on: ubuntu-latest
     steps:
-      - run: echo "testing here"
+      - run: echo "TRUE"
+        if: ${{ contains(fromJSON(env.SKIPPED_BRANCHES), github.ref_name)}}
+      - run: echo "FALSE"
+        if: ${{ !contains(fromJSON(env.SKIPPED_BRANCHES), github.ref_name)}}
