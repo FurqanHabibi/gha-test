@@ -2,14 +2,28 @@ name: GitHub Actions Demo
 
 on: push
 
-env:
-  SKIPPED_BRANCHES: '["prd", "stg", "sandbox", "main"]'
-
 jobs:
-  gha-test:
+  job1:
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        component: [a, z]
     steps:
-      - run: echo "TRUE"
-        if: ${{ contains(fromJSON(env.SKIPPED_BRANCHES), github.ref_name)}}
-      - run: echo "FALSE"
-        if: ${{ !contains(fromJSON(env.SKIPPED_BRANCHES), github.ref_name)}}
+      - name: Output git sha
+        id: git-tag
+        run: echo "short-${{ matrix.component }}=${{ matrix.component }}" >> $GITHUB_OUTPUT
+    outputs:
+      sha-a: ${{steps.git-tag.outputs.short-a}}
+      sha-z: ${{steps.git-tag.outputs.short-z}}
+  
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    strategy:
+      matrix:
+        component: [a, z]
+    steps:
+      - name: Update manifests
+        env:
+          SHA: ${{needs.job1.outputs[format('sha-{0}', matrix.component)]}}
+        run: echo $SHA
