@@ -5,25 +5,8 @@ on: push
 jobs:
   job1:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        component: [a, z]
     steps:
-      - name: Output git sha
-        id: git-tag
-        run: echo "short-${{ matrix.component }}=${{ matrix.component }}" >> $GITHUB_OUTPUT
-    outputs:
-      sha-a: ${{steps.git-tag.outputs.short-a}}
-      sha-z: ${{steps.git-tag.outputs.short-z}}
-  
-  job2:
-    runs-on: ubuntu-latest
-    needs: job1
-    strategy:
-      matrix:
-        component: [a, z]
-    steps:
-      - name: Update manifests
-        env:
-          SHA: ${{needs.job1.outputs[format('sha-{0}', matrix.component)]}}
-        run: echo $SHA
+      - uses: RaphaelNeumann/json-to-env-action@v1
+        with:
+          json_envs: '{"HOLA": "hello"}'
+      - run: echo $HOLA
