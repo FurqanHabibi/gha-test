@@ -1,0 +1,17 @@
+name: Test reusable workflow
+
+on:
+  workflow_call:
+    inputs:
+      test_input:
+        required: true
+        type: string
+
+jobs:
+  test_job:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - run: echo "${{ inputs.test_input }}"
