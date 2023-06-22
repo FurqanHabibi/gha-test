@@ -6,12 +6,4 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - uses: dorny/paths-filter@v2
-        id: filter
-        with:
-          base: ${{ github.ref }}
-          filters: |
-            static:
-              
-      - if: ${{ steps.filter.outputs.static == 'true'}}
-        run: echo "haha"
+      - run: curl -sSL https://install.python-poetry.org | POETRY_VERSION=1.3 python3 -
