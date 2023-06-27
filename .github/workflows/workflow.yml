@@ -10,4 +10,4 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "::setFailed ::Target branch (${{ TARGET_BRANCH }}) is not default branch (${{ DEFAULT_BRANCH }})."
+      - run: echo "::setFailed ::Target branch ($TARGET_BRANCH) is not default branch ($DEFAULT_BRANCH)."
