@@ -10,7 +10,4 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/github-script@v6
-        with:
-          script: |
-            core.setFailed('Target branch (${{ env.TARGET_BRANCH }}) is not default branch (${{ env.DEFAULT_BRANCH }}).')
+      - run: echo "::error ::Target branch ($TARGET_BRANCH) is not default branch ($DEFAULT_BRANCH)."
