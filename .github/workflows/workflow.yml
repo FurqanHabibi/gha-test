@@ -18,7 +18,8 @@ jobs:
       - run: |
           echo '${{ env.TARGET_BRANCH }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
           while read -r key value; do
-            echo "$key=$value" >> "$GITHUB_ENV"
+            val=$value
+            echo "$key=$val" >> "$GITHUB_ENV"
           done
       - run: echo $TEST_ENV
       - run: echo $TEST_ANV
