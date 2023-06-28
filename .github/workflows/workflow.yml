@@ -4,19 +4,17 @@ on: push
 
 env:
   TARGET_BRANCH: |
-    {
-      "TEST_ENV": "hehehe",
-      "TEST_ANV": "hahaha",
-      "C": "${B_ENV}yoho"
-    }
-  B_ENV: 'b_env'
+    TEST_ENV: hehehe
+    TEST_ANV: hahaha
+    C: ${B_ENV}yoho
+  B_ENV: 'b_val'
 
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo '${{ env.TARGET_BRANCH }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
+          echo '${{ toJSON(env.TARGET_BRANCH) }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
           while read -r key value; do
             val=$(eval "echo $value")
             echo "$key=$val" >> "$GITHUB_ENV"
