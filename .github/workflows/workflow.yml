@@ -6,8 +6,10 @@ env:
   TARGET_BRANCH: |
     {
       "TEST_ENV": "hehehe",
-      "TEST_ANV": "hahaha"
+      "TEST_ANV": "hahaha",
+      "C": "${B_ENV}"
     }
+  B_ENV: b_env
 
 jobs:
   job1:
@@ -20,3 +22,4 @@ jobs:
           done
       - run: echo $TEST_ENV
       - run: echo $TEST_ANV
+      - run: echo $C
