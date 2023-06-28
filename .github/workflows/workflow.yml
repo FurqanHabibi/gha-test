@@ -7,9 +7,9 @@ env:
     {
       "TEST_ENV": "hehehe",
       "TEST_ANV": "hahaha",
-      "C": "B_ENV"
+      "C": "${B_ENV}yoho"
     }
-  B_ENV: b_env
+  B_ENV: 'b_env'
 
 jobs:
   job1:
@@ -18,7 +18,7 @@ jobs:
       - run: |
           echo '${{ env.TARGET_BRANCH }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
           while read -r key value; do
-            echo "$key=\$$value" >> "$GITHUB_ENV"
+            echo "$key=$value" >> "$GITHUB_ENV"
           done
       - run: echo $TEST_ENV
       - run: echo $TEST_ANV
