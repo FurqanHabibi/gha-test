@@ -3,11 +3,20 @@ name: GitHub Actions Demo
 on: push
 
 env:
-  TARGET_BRANCH: ${{ github.event.release.target_commitish }}
-  DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+  TARGET_BRANCH: |
+    {
+      "TEST_ENV": "hehehe",
+      "TEST_ANV": "hahaha"
+    }
 
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "::error ::Target branch ($TARGET_BRANCH) is not default branch ($DEFAULT_BRANCH)."
+      - run: |
+          echo '${{ env.TARGET_BRANCH }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
+          while read -r key value; do
+            echo "$key=$value" >> "$GITHUB_ENV"
+          done
+      - run: echo $TEST_ENV
+      - run: echo $TEST_ANV
