@@ -7,7 +7,7 @@ env:
     {
       "TEST_ENV": "hehehe",
       "TEST_ANV": "hahaha",
-      "C": "${B_ENV}"
+      "C": "B_ENV"
     }
   B_ENV: b_env
 
