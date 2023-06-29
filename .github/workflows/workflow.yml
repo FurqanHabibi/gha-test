@@ -2,23 +2,16 @@ name: GitHub Actions Demo
 
 on: push
 
-env:
-  TARGET_BRANCH: |
-    TEST_ENV: hehehe
-    TEST_ANV: hahaha
-    C: ${B_ENV}yoho
-  B_ENV: 'b_val'
-
 jobs:
   job1:
+    if: false
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo '${{ toJSON(env.TARGET_BRANCH) }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
-          while read -r key value; do
-            val=$(eval "echo $value")
-            echo "$key=$val" >> "$GITHUB_ENV"
-          done
-      - run: echo $TEST_ENV
-      - run: echo $TEST_ANV
-      - run: echo $C
+      - run: echo "job1"
+  
+  job2:
+    needs: job1
+    if: true
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "job2"
