@@ -4,14 +4,14 @@ on: push
 
 jobs:
   job1:
-    if: false
+    if: true
     runs-on: ubuntu-latest
     steps:
       - run: echo "job1"
   
   job2:
     needs: job1
-    if: always() && false
+    if: always() && true
     runs-on: ubuntu-latest
     steps:
       - run: echo "job2"
