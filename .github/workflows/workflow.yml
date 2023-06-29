@@ -11,7 +11,7 @@ jobs:
   
   job2:
     needs: job1
-    if: true
+    if: always() && true
     runs-on: ubuntu-latest
     steps:
       - run: echo "job2"
