@@ -5,12 +5,10 @@ on: push
 jobs:
   job1:
     runs-on: ubuntu-latest
+    env:
+      TF_CUR_DIR: './tf/infra/prd'
     steps:
-      - run: |
-          echo "HAHA=haha" >> "$GITHUB_ENV"
-          echo "HEHE=" >> "$GITHUB_ENV"
-          echo "HUHU=huhu" >> "$GITHUB_ENV"
-      - run: |
-          echo $HAHA
-          echo $HEHE
-          echo $HUHU
+      - uses: actions/upload-artifact@v3
+        with:
+          name: errored-tfstate_${{ env.TF_CUR_DIR }}
+          path: ${{ env.TF_CUR_DIR }}/errored.tfstate
