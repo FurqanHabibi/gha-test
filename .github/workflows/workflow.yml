@@ -6,7 +6,8 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     env:
-      a: '[]'
+      one: ''
+      two: 'two'
     steps:
       - uses: actions/checkout@v3
-      - run: echo ${{ toJSON(fromJSON(env.a)) == '[]' }}
+      - run: echo ${{ env.one || env.two }}
