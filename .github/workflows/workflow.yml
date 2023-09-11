@@ -7,10 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        a: [one, two]
-        exclude:
-          - a: one
-          - a: two
+        a: [one, two, three]
+        exclude: [{a: one}, {a: two}]
     steps:
       - uses: actions/checkout@v3
       - run: echo ${{ contains('This is awesome ', '') }}
