@@ -9,4 +9,4 @@ jobs:
       a: ${{ fromJSON('[]') }}
     steps:
       - uses: actions/checkout@v3
-      - run: echo ${{ fromJSON('[]') == env.a }}
+      - run: echo ${{ toJSON(env.a) == '[]' }}
