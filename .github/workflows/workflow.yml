@@ -7,9 +7,9 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        a: [one]
+        a: [one, two]
         exclude:
           - a: one
     steps:
       - uses: actions/checkout@v3
-      - run: echo "HAHAHA"
+      - run: echo "HAHAHA ${{ matrix.a }}"
