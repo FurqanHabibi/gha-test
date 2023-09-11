@@ -13,4 +13,4 @@ jobs:
           - a: two
     steps:
       - uses: actions/checkout@v3
-      - run: echo "HAHAHA ${{ matrix.a }}"
+      - run: echo ${{ contains('This is awesome ', '') }}
