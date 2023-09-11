@@ -6,7 +6,7 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     env:
-      a: ${{ fromJSON('[]') }}
+      a: '[]'
     steps:
       - uses: actions/checkout@v3
-      - run: echo ${{ toJSON(env.a) == '[]' }}
+      - run: echo ${{ toJSON(fromJSON(env.a)) == '[]' }}
