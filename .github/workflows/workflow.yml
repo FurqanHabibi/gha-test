@@ -5,12 +5,11 @@ on: push
 jobs:
   job1:
     runs-on: ubuntu-latest
-    env:
-      TF_CUR_PATH: './tf/infra/prd'
+    strategy:
+      matrix:
+        a: [one]
+        exclude:
+          - a: one
     steps:
       - uses: actions/checkout@v3
-      - run: echo "TF_CUR_DIR=${TF_CUR_PATH##*/}" >> "$GITHUB_ENV"
-      - uses: actions/upload-artifact@v3
-        with:
-          name: errored-tfstate_${{ env.TF_CUR_DIR }}
-          path: ${{ env.TF_CUR_PATH }}/errored.tfstate
+      - run: echo "HAHAHA"
