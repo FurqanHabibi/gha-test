@@ -5,10 +5,8 @@ on: push
 jobs:
   job1:
     runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        a: [one, two, three]
-        exclude: [{a: one}, {a: two}]
+    env:
+      a: ${{ fromJSON('[]') }}
     steps:
       - uses: actions/checkout@v3
-      - run: echo ${{ contains('This is awesome ', '') }}
+      - run: echo ${{ fromJSON('[]') == env.a }}
