@@ -10,6 +10,7 @@ jobs:
         a: [one, two]
         exclude:
           - a: one
+          - a: two
     steps:
       - uses: actions/checkout@v3
       - run: echo "HAHAHA ${{ matrix.a }}"
