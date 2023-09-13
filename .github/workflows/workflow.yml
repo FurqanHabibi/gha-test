@@ -10,4 +10,4 @@ jobs:
     steps:
       - run: |
           echo "tes"
-          {{ env.command }}
+          ${{ env.command }}
