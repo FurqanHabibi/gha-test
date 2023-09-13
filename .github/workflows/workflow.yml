@@ -5,11 +5,8 @@ on: push
 jobs:
   job1:
     runs-on: ubuntu-latest
-    env:
-      command: |
-        echo "command 1"
-        echo "command 2"
     steps:
       - run: |
-          echo "tes"
-          ${{ env.command }}
+          HABIBI="habibi"
+          echo "test"
+          echo $HABIBI
