@@ -6,18 +6,4 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v3
-      - run: |
-          echo '{
-            "DOCKERHUB_REPO": "hdedev/shobo-support-viewer",
-            "DOCKER_TAG_BACKEND": "${GITHUB_REF_NAME}-${GITHUB_SHA}-be",
-            "DOCKER_TAG_FRONTEND": "${GITHUB_REF_NAME}-${GITHUB_SHA}-fe",
-            "CRON": "cron(1,1,1,1)"
-          }
-          ' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
-          while read -r key value; do
-            val=$(eval "echo \"$value\"")
-            echo $val
-            # echo "$key=$val" >> "$GITHUB_ENV"
-          done
-      # - run: echo $DOCKER_TAG_BACKEND
+      - run: exit 1
