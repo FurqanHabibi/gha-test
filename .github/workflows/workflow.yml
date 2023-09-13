@@ -5,9 +5,17 @@ on: push
 jobs:
   job1:
     runs-on: ubuntu-latest
-    env:
-      one: 'one'
-      two: 'two'
     steps:
       - uses: actions/checkout@v3
-      - run: echo ${{ env.one || env.two }}
+      - run: |
+          echo '{
+            "DOCKERHUB_REPO": "hdedev/shobo-support-viewer",
+            "DOCKER_TAG_BACKEND": "${GITHUB_REF_NAME}-${GITHUB_SHA}-be",
+            "DOCKER_TAG_FRONTEND": "${GITHUB_REF_NAME}-${GITHUB_SHA}-fe"
+          }
+          ' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
+          while read -r key value; do
+            val=$(eval 'echo "$value"')
+            echo "$key=$val" >> "$GITHUB_ENV"
+          done
+      - run: echo $DOCKER_TAG_BACKEND
