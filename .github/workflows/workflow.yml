@@ -15,7 +15,9 @@ jobs:
           }
           ' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
           while read -r key value; do
-            val=$(eval 'echo "$value"')
-            echo "$key=$val" >> "$GITHUB_ENV"
+            echo $key
+            echo $value
+            # val=$(eval 'echo "$value"')
+            # echo "$key=$val" >> "$GITHUB_ENV"
           done
-      - run: echo $DOCKER_TAG_BACKEND
+      # - run: echo $DOCKER_TAG_BACKEND
