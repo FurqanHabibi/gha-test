@@ -15,7 +15,7 @@ jobs:
           }
           ' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
           while read -r key value; do
-            val=$(eval 'echo "$value"')
+            val=$(eval 'echo $value')
             echo $val
             # echo "$key=$val" >> "$GITHUB_ENV"
           done
