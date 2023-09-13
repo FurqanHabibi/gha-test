@@ -4,10 +4,9 @@ on: push
 
 jobs:
   job1:
-    if: false
     runs-on: ubuntu-latest
     steps:
-      - run: exit 0
+      - run: exit 1
   
   job2:
     if: always() && needs.job1.result != 'failure'
