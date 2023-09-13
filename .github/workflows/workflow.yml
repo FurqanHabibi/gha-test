@@ -6,7 +6,9 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     env:
-      command: ''
+      command: |
+        echo "command 1"
+        echo "command 2"
     steps:
       - run: |
           echo "tes"
