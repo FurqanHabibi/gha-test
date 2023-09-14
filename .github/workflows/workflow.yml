@@ -17,6 +17,6 @@ jobs:
           echo '${{ env.input }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
           while read -r key value; do
             val=$(eval "echo \"$value\"")
-            output=`echo $output | jq --arg key "$key" --arg val "$val" '. + {$key: $val}'`
+            output=`echo $output | jq --arg key "$key" --arg val "$val" '. + {($key): $val}'`
           done
           echo $output
