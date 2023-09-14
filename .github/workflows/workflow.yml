@@ -16,12 +16,11 @@ jobs:
     steps:
       - id: step
         run: |
-          OUTPUT_JSON="{}"
+          OUTPUT="{}"
           echo '${{ env.input }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
           while read -r key value; do
             val=$(eval "echo \"$value\"")
-            OUTPUT_JSON=`echo $OUTPUT_JSON | jq --arg key "$key" --arg val "$val" '. + {($key): $val}'`
-            OUTPUT=`echo $OUTPUT_JSON | jq -r '.'`
+            OUTPUT=`echo $OUTPUT_JSON | jq -c --arg key "$key" --arg val "$val" '. + {($key): $val}'`
             echo "output=$OUTPUT" >> $GITHUB_OUTPUT
           done
 
