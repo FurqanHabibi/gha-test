@@ -11,12 +11,22 @@ jobs:
           "TEST": "$(echo test)",
           "HAHA": "$(echo haha)"
         }
+    outputs:
+      output: ${{ steps.step.outputs.output }}
     steps:
-      - run: |
-          output="{}"
+      - id: step
+        run: |
+          OUTPUT="{}"
           echo '${{ env.input }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
           while read -r key value; do
             val=$(eval "echo \"$value\"")
-            output=`echo $output | jq --arg key "$key" --arg val "$val" '. + {($key): $val}'`
-            echo $output
+            OUTPUT=`echo $OUTPUT | jq --arg key "$key" --arg val "$val" '. + {($key): $val}'`
+            echo "output=$OUTPUT" >> $GITHUB_OUTPUT
           done
+
+  job2:
+    runs-on: ubuntu-latest
+    needs: job1
+    steps:
+      - run: echo "${{ needs.job1.outputs.output }}"
+    
