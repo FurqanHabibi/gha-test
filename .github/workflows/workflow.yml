@@ -16,6 +16,10 @@ jobs:
     steps:
       - id: step
         run: |
+          pushd $dir
+            TF_VER="1.2.3"
+          popd
+          echo $TF_VER
           OUTPUT="{}"
           echo '${{ env.input }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
           while read -r key value; do
