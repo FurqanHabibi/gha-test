@@ -18,4 +18,5 @@ jobs:
           while read -r key value; do
             val=$(eval "echo \"$value\"")
             output=`echo $output | jq --arg key "$key" --arg val "$val" '. + {($key): $val}'`
-          done && echo $output | echo
+            echo $output
+          done
