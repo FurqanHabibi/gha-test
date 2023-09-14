@@ -28,5 +28,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: job1
     steps:
-      - run: echo "${{ needs.job1.outputs.output }}"
+      - run: |
+          echo '${{ needs.job1.outputs.output }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
+          while read -r key value; do
+            echo "$key=$value" >> "$GITHUB_ENV"
+          done
+      - run: echo DONE
     
