@@ -20,8 +20,7 @@ jobs:
           echo '${{ env.input }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
           while read -r key value; do
             val=$(eval "echo \"$value\"")
-            OUTPUT=`echo $OUTPUT_JSON | jq -c --arg key "$key" --arg val "$val" '. + {($key): $val}'`
-            echo $OUTPUT
+            OUTPUT=`echo $OUTPUT | jq -c --arg key "$key" --arg val "$val" '. + {($key): $val}'`
             echo "output=$OUTPUT" >> $GITHUB_OUTPUT
           done
 
