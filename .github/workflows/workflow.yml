@@ -16,7 +16,7 @@ jobs:
     steps:
       - id: step
         run: |
-          pushd $dir
+          pushd "."
             TF_VER="1.2.3"
           popd
           echo $TF_VER
