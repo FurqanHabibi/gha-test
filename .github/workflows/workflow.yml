@@ -9,5 +9,5 @@ jobs:
       continue: 'true'
     steps:
       - run: exit 1
-        continue-on-error: ${{ env.continue }}
+        continue-on-error: ${{ env.continue && true || false }}
       - run: echo "HAHA"
