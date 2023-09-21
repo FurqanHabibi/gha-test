@@ -6,36 +6,8 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     env:
-      input: |
-        {
-          "TEST": "$(echo test)",
-          "HAHA": "$(echo haha)"
-        }
-    outputs:
-      output: ${{ steps.step.outputs.output }}
+      continue: 'true'
     steps:
-      - id: step
-        run: |
-          pushd "."
-            TF_VER="1.2.3"
-          popd
-          echo $TF_VER
-          OUTPUT="{}"
-          echo '${{ env.input }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
-          while read -r key value; do
-            val=$(eval "echo \"$value\"")
-            OUTPUT=`echo $OUTPUT | jq -c --arg key "$key" --arg val "$val" '. + {($key): $val}'`
-            echo "output=$OUTPUT" >> $GITHUB_OUTPUT
-          done
-
-  job2:
-    runs-on: ubuntu-latest
-    needs: job1
-    steps:
-      - run: |
-          echo '${{ needs.job1.outputs.output }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
-          while read -r key value; do
-            echo "$key=$value" >> "$GITHUB_ENV"
-          done
-      - run: echo DONE
-    
+      - run: exit 1
+        continue-on-error: ${{ env.continue }}
+      - run: echo "HAHA"
