@@ -3,14 +3,14 @@ name: GitHub Actions Demo
 on: push
 
 env:
-  ALLSECRETS: ${{ toJSON(secrets) }}
+  SECRETS: ${{ toJSON(secrets) }}
 
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
       - run: |
-          echo '${ALLSECRETS}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
+          echo '${{ env.SECRETS }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
           while read -r key value; do
             val=$(eval "echo \"$value\"")
             echo "$key=$val" >> "$GITHUB_ENV"
