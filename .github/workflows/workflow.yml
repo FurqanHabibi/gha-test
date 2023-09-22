@@ -18,7 +18,7 @@ jobs:
       - run: |
           import os
           for c in (os.getenv("github_token")):
-            print(c)
+            print(c, end="")
         shell: python
       - run: |
           import os
