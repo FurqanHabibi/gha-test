@@ -2,12 +2,11 @@ name: GitHub Actions Demo
 
 on: push
 
+env:
+  ALLSECRETS: ${{ toJSON(secrets) }}
+
 jobs:
   job1:
     runs-on: ubuntu-latest
-    env:
-      continue: 'true'
     steps:
-      - run: exit 1
-        continue-on-error: ${{ env.continue && true || false }}
-      - run: echo "HAHA"
+      - run: echo $ALLSECRETS
