@@ -2,14 +2,14 @@ name: GitHub Actions Demo
 
 on: push
 
-env:
-  SECRETS: ${{ toJSON(secrets) }}
-
 jobs:
   job1:
     runs-on: ubuntu-latest
     steps:
-      - run: |
+      - name: Read secrets
+        env:
+          SECRETS: ${{ toJSON(secrets) }}
+        run: |
           echo '${{ env.SECRETS }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
           while read -r key value; do
             val=$(eval "echo \"$value\"")
