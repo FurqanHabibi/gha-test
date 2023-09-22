@@ -17,11 +17,6 @@ jobs:
           done
       - run: |
           import os
-          for c in (os.getenv("github_token")):
-            print(c, end="")
-        shell: python
-      - run: |
-          import os
           for c in (os.getenv("TEST")):
             print(c)
         shell: python
