@@ -13,16 +13,16 @@ jobs:
           echo '${{ env.SECRETS }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
           while read -r key value; do
             val=$(eval "echo \"$value\"")
-            echo "$key=$val" >> "$GITHUB_ENV"
+            echo "SECRETS_${key}=$val" >> "$GITHUB_ENV"
           done
       - run: |
           import os
-          for c in (os.getenv("TEST")):
+          for c in (os.getenv("SECRETS_TEST")):
             print(c)
         shell: python
       - run: |
           import os
-          for c in (os.getenv("TEST_LAGI")):
+          for c in (os.getenv("SECRETS_TEST_LAGI")):
             print(c)
         shell: python
 
