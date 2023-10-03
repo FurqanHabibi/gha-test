@@ -5,6 +5,10 @@ on: push
 jobs:
   job1:
     runs-on: ubuntu-latest
+    if: |
+      true
+      && true
+      && true
     steps:
       - name: Read secrets
         env:
