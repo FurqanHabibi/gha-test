@@ -6,9 +6,7 @@ jobs:
   job1:
     runs-on: ubuntu-latest
     if: |
-      true
-      && true
-      && true
+      true && false || true && false
     steps:
       - name: Read secrets
         env:
