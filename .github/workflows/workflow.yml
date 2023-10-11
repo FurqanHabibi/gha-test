@@ -3,28 +3,11 @@ name: GitHub Actions Demo
 on: push
 
 jobs:
-  job1:
+  check-date-each:
     runs-on: ubuntu-latest
-    if: |
-      true && false || true && false
     steps:
-      - name: Read secrets
+      - run: date # Fri Jan 14 16:30:55 UTC 2022
+      - run: date # Sat Jan 15 01:30:55 JST 2022
         env:
-          SECRETS: ${{ toJSON(secrets) }}
-        run: |
-          echo '${{ env.SECRETS }}' | jq -r 'to_entries[] | "\(.key) \(.value)"' |
-          while read -r key value; do
-            val=$(eval "echo \"$value\"")
-            echo "SECRETS_${key}=$val" >> "$GITHUB_ENV"
-          done
-      - run: |
-          import os
-          for c in (os.getenv("SECRETS_TEST")):
-            print(c)
-        shell: python
-      - run: |
-          import os
-          for c in (os.getenv("SECRETS_TEST_LAGI")):
-            print(c)
-        shell: python
+          TZ: 'Asia/Tokyo'
 
