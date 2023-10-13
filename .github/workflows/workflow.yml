@@ -1,19 +1,17 @@
 name: GitHub Actions Demo
 
-on: push
+on:
+  push:
+    branches:
+      - dev
 
 jobs:
-  changes:
+  release-pr:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Calver Release
-        uses: StephaneBour/actions-calver@master
-        with:
-          date_format: "%Y.%-m.1"
-          release_branch: "main"
-          name: "${NEXT_RELEASE}"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - name: Create release pull request
+      run: |
+        npx gh-calver-release create:pr --repo ${{ github.repository }} --base main --head dev --format "yyyy.mm.minor"
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
