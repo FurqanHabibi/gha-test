@@ -1,17 +1,12 @@
 name: GitHub Actions Demo
 
 on:
-  push:
-    branches:
-      - dev
+  release:
+    types: [released]
 
 jobs:
   release-pr:
     runs-on: ubuntu-latest
     steps:
-    - name: Create release pull request
-      run: |
-        npx gh-calver-release create:pr --repo ${{ github.repository }} --base main --head dev --format "yyyy.mm.minor"
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    - run: echo "{{ github.ref_name }}"
 
