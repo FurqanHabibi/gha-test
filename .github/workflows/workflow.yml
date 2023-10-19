@@ -8,5 +8,5 @@ jobs:
   release-pr:
     runs-on: ubuntu-latest
     steps:
-    - run: echo "{{ github.ref_name }}"
+    - run: echo "${{ github.ref_name }}"
 
