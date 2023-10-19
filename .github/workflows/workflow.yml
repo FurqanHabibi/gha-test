@@ -4,9 +4,12 @@ on:
   release:
     types: [released]
 
+env:
+  TAG_NAME: ${{ github.ref_name }}
+
 jobs:
   release-pr:
     runs-on: ubuntu-latest
     steps:
-    - run: echo "${{ github.ref_name }}"
+    - run: echo "$TAG_NAME"
 
