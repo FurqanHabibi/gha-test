@@ -11,5 +11,7 @@ jobs:
   release-pr:
     runs-on: ubuntu-latest
     steps:
-    - run: echo "$TAG_NAME"
+    - run: |
+        HAHA=`echo "haha"`
+        echo "$HAHA"
 
