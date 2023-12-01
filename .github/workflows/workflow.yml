@@ -1,8 +1,7 @@
 name: GitHub Actions Demo
 
 on:
-  release:
-    types: [released]
+  push
 
 env:
   TAG_NAME: ${{ github.ref_name }}
