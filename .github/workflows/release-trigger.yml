@@ -13,6 +13,7 @@ concurrency:  # Cancel previous builds if they are still running
 
 jobs:
   release:
+    if: github.event.issue.pull_request && (github.ref_name == 'main') && !github.event.issue.closed_at && (github.event.comment.body == '\release')
     runs-on: ubuntu-latest
     steps:
-      - run: echo ${{ toJson(github) }}
+      - run: echo "hahaa"
