@@ -11,6 +11,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - run: |
-        HAHA=`echo "haha"`
-        echo "$HAHA"
+        ls /dev
 
