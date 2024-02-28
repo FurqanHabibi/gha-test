@@ -7,6 +7,5 @@ jobs:
     name: Input check
     runs-on: ubuntu-latest
     steps:
-      - continue-on-error: true
-        run: |
-          exit 1 || echo "haha"
+      - run: |
+          false || echo "haha"
