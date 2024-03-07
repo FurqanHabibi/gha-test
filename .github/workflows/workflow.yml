@@ -2,10 +2,12 @@ name: GitHub Actions Demo
 
 on: push
 
+env:
+  kashima: '*-kashima'
+
 jobs:
   build:
     name: Input check
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          (exit 0) || echo "haha"
+      - run: if [[ "haha-kashima" == ${{ env.kashima }} ]]; then echo "matched"; fi
