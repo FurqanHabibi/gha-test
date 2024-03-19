@@ -1,4 +1,4 @@
-# gha-test hola
+# gha-test
 
 test
 test
