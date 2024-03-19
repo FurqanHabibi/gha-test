@@ -11,5 +11,6 @@ jobs:
         uses: StephaneBour/actions-calver@master
         with:
           date_format: "%Y.%m"
+          release_branch: "main"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
