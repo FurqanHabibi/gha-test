@@ -4,28 +4,28 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:
 
 jobs:
-  build:
+  test:
     name: Calver release
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Exit with error
+        run: |
+          echo "Erroring"
+          exit 1
 
-      - name: Conventional Changelog Action
-        id: changelog
-        uses: TriPSs/conventional-changelog-action@v5
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          output-file: "false"
-          preset: "conventionalcommits"
-      
-      - name: Calver Release
-        uses: HENNGE/actions-calver@master
-        with:
-          date_format: "%Y.%m"
-          release_branch: "main"
-          message: ${{ steps.changelog.outputs.clean_changelog }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - name: Output report 1
+        if: true
+        run: |
+          echo "Report 1"
+
+      - name: Output report 2
+        if: always() && true
+        run: |
+          echo "Report 2"
+
+      - name: Output report 3
+        if: always() && false
+        run: |
+          echo "Report 3"
