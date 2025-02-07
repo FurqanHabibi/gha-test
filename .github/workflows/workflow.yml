@@ -20,6 +20,9 @@ jobs:
         shell: bash
         working-directory: ${{ matrix.dir }}
     steps:
+      - name: Check out repo
+        uses: actions/checkout@v4
+        
       - run: |
           echo "${{ matrix.dir }}" "${{ matrix.account }}"
           pwd
