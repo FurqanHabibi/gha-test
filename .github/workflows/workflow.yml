@@ -12,9 +12,14 @@ jobs:
     strategy:
       matrix:
         include: [
-          {dir: './switch-role-dev/tf', account: '164201395711'},
-          {dir: './tf/hde-dev-cprd', account: '164201395711'}
+          {dir: '.github/actions', account: '164201395711'},
+          {dir: 'tf/infra/prd', account: '164201395711'}
         ]
+    defaults:
+      run:
+        shell: bash
+        working-directory: ${{ matrix.dir }}
     steps:
       - run: |
           echo "${{ matrix.dir }}" "${{ matrix.account }}"
+          pwd
