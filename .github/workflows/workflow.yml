@@ -3,29 +3,18 @@ name: GitHub Actions Demo
 on: 
   push:
     branches:
-      - main
-  workflow_dispatch:
+      - dev
 
 jobs:
   build:
     name: Calver release
     runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include: [
+          {dir: './switch-role-dev/tf', account: '164201395711'},
+          {dir: './tf/hde-dev-cprd', account: '164201395711'}
+        ]
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Conventional Changelog Action
-        id: changelog
-        uses: TriPSs/conventional-changelog-action@v5
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          output-file: "false"
-          preset: "conventionalcommits"
-      
-      - name: Calver Release
-        uses: HENNGE/actions-calver@master
-        with:
-          date_format: "%Y.%m"
-          release_branch: "main"
-          message: ${{ steps.changelog.outputs.clean_changelog }}
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: |
+          echo "${{ matrix.dir }}" "${{ matrix.account }}"
