@@ -19,6 +19,6 @@ jobs:
             b: b
           - a: a
     steps:
-      - run: |
-          echo "${{ matrix.a }}"
-          echo "${{ matrix.b }}"
+      - run: echo "${{ matrix.a }}"
+      - if: matrix.b != ""
+        run: echo "${{ matrix.b }}"
