@@ -20,5 +20,5 @@ jobs:
           - a: a
     steps:
       - run: echo "${{ matrix.a }}"
-      - if: matrix.b != ""
+      - if: matrix.b != ''
         run: echo "${{ matrix.b }}"
